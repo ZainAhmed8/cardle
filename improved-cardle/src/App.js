@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const AppContainer = styled.div`
   display: flex;
@@ -11,9 +12,9 @@ const AppContainer = styled.div`
   color: #fff;
 `;
 
-const GuessInput = styled.input`
+const Select = styled.select`
   padding: 10px;
-  margin: 20px 0;
+  margin: 10px 0;
   width: 300px;
   border: none;
   border-radius: 5px;
@@ -62,21 +63,75 @@ const Button = styled.button`
 `;
 
 function App() {
-  const [guess, setGuess] = useState('');
+  const [year, setYear] = useState('');
+  const [make, setMake] = useState('');
+  const [model, setModel] = useState('');
+  const [years, setYears] = useState([]);
+  const [makes, setMakes] = useState([]);
+  const [models, setModels] = useState([]);
 
-  const handleGuessChange = (e) => {
-    setGuess(e.target.value);
+  useEffect(() => {
+    // Fetch the list of unique years from the database
+    axios.get('/api/years').then(response => {
+      setYears(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    // Fetch the makes for the selected year
+    if (year) {
+      axios.get(`/api/makes?year=${year}`).then(response => {
+        setMakes(response.data);
+        setMake('');
+        setModel('');
+        setModels([]);
+      });
+    }
+  }, [year]);
+
+  useEffect(() => {
+    // Fetch the models for the selected make and year
+    if (make) {
+      axios.get(`/api/models?make=${make}&year=${year}`).then(response => {
+        setModels(response.data);
+        setModel('');
+      });
+    }
+  }, [make, year]);
+
+  const handleYearChange = (e) => {
+    setYear(e.target.value);
+  };
+
+  const handleMakeChange = (e) => {
+    setMake(e.target.value);
+  };
+
+  const handleModelChange = (e) => {
+    setModel(e.target.value);
   };
 
   return (
     <AppContainer>
       <h1>Cardle</h1>
-      <GuessInput 
-        type="text" 
-        value={guess} 
-        onChange={handleGuessChange} 
-        placeholder="Type a guess here..." 
-      />
+      <Select value={year} onChange={handleYearChange}>
+        <option value="">Select Year</option>
+        {years.map(year => (
+          <option key={year} value={year}>{year}</option>
+        ))}
+      </Select>
+      <Select value={make} onChange={handleMakeChange} disabled={!year}>
+        <option value="">Select Make</option>
+        {makes.map(make => (
+          <option key={make} value={make}>{make}</option>
+        ))}
+      </Select>
+      <Select value={model} onChange={handleModelChange} disabled={!make}>
+        <option value="">Select Model</option>
+        {models.map(model => (
+          <option key={model} value={model}>{model}</option>
+        ))}
+      </Select>
       <InfoContainer>
         <InfoBox bgColor="#a8d600" color="#000">
           Most Recent Year
