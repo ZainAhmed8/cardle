@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+// import Flag from 'react-world-flags'
+
+const renderArrow = (direction) => {
+  if (direction === 'up') {
+    return '▲';
+  } else if (direction === 'down') {
+    return '▼';
+  }
+  return '';
+}
 
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   background-color: #1b1b1b;
   color: #fff;
+  min-height: 100vh;
 `;
 
 const Select = styled.select`
@@ -22,26 +32,46 @@ const Select = styled.select`
 
 const InfoContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  justify-items: center;
+  margin-bottom: 20px;
+`;
+
+const GuessContainer = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+`;
+
+const GuessBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 30%;  // Adjust this to make the box smaller
 `;
 
 const InfoBox = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: ${props => props.bgColor || '#333'};
-  padding: 20px;
+  padding: 30px;  // Adjust this to make the box smaller
   border-radius: 10px;
-  width: 150px;
-  height: 60px;
   color: ${props => props.color || '#fff'};
   font-weight: bold;
   font-size: 1em;
   text-align: center;
+
+  & > div {
+    margin-bottom: 10px;  // Adjust this value to add space between the lines
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -69,8 +99,7 @@ function App() {
   const [years, setYears] = useState([]);
   const [makes, setMakes] = useState([]);
   const [models, setModels] = useState([]);
-  const [comparisonResult, setComparisonResult] = useState(null);
-  const [guessesLeft, setGuessesLeft] = useState(10);
+  const [guesses, setGuesses] = useState([]);
 
   useEffect(() => {
     axios.get('/api/years').then(response => {
@@ -115,14 +144,27 @@ function App() {
       year: parseInt(year, 10),
       make,
       model,
-      car_of_the_day_id: 'YOUR_CAR_OF_THE_DAY_ID' // Replace this with the actual ID or fetch it dynamically
+      car_of_the_day_id: '66afcf6373a71b92e6293a41' // CAR OF THE DAY, CURRENTLY 2020 Porsche Panamera
     };
 
-    axios.post('/submit_guess', guess).then(response => {
-      setComparisonResult(response.data.comparison);
-      setGuessesLeft(response.data.guesses_left);
+    axios.get(`/api/car_details?year=${year}&make=${make}&model=${model}`).then(response => {
+      const guessedCarDetails = response.data;
+      axios.post('/submit_guess', guess).then(response => {
+        const newGuess = {
+          year,
+          make,
+          model,
+          body_styles: guessedCarDetails.body_styles,
+          country: guessedCarDetails.country,
+          starting_msrp: guessedCarDetails.starting_msrp,
+          comparison: response.data.comparison,
+        };
+        setGuesses([...guesses, newGuess]);
+      }).catch(error => {
+        console.error('Error submitting guess:', error);
+      });
     }).catch(error => {
-      console.error('Error submitting guess:', error);
+      console.error('Error fetching car details:', error);
     });
   };
 
@@ -148,29 +190,39 @@ function App() {
         ))}
       </Select>
 
-      {comparisonResult && (
-        <InfoContainer>
-          {Object.keys(comparisonResult).map(key => (
-            <InfoBox key={key} bgColor={comparisonResult[key].match === 'green' ? '#0f0' : '#f00'}>
-              {key.charAt(0).toUpperCase() + key.slice(1)}:
-              <br />
-              {comparisonResult[key].match}
-            </InfoBox>
-          ))}
-        </InfoContainer>
-      )}
-
       <ButtonContainer>
-        <Button color="#0f0" hoverColor="#8f8" onClick={handleSubmitGuess}>
+        <Button color="#a200ff" hoverColor="#da99ff" onClick={handleSubmitGuess}>
           Submit Guess
         </Button>
       </ButtonContainer>
 
-      {guessesLeft > 0 ? (
-        <p>Guesses left: {guessesLeft}</p>
-      ) : (
-        <p>No more guesses left!</p>
-      )}
+      <GuessContainer>
+        {guesses.map((guess, index) => (
+          <GuessBox key={index}>
+            <InfoBox bgColor={guess.comparison.year.match}>
+              <div>Year</div>
+              <div>
+               {guess.year} {renderArrow(guess.comparison.year.direction)}
+              </div>
+            </InfoBox>
+            <InfoBox bgColor={guess.comparison.make.match}>
+              <div>Make</div><div>{guess.make}</div>
+            </InfoBox>
+            <InfoBox bgColor={guess.comparison.model.match}>
+              <div>Model</div><div>{guess.model}</div>
+            </InfoBox>
+            <InfoBox bgColor={guess.comparison.body_styles.match}>
+              <div>Body Styles</div> <div>{guess.body_styles}</div>
+            </InfoBox>
+            <InfoBox bgColor={guess.comparison.country.match}>
+              <div>Country</div><div>{guess.country}</div>
+            </InfoBox>
+            <InfoBox bgColor={guess.comparison.starting_msrp.match}>
+              <div>Starting MSRP</div><div>{guess.starting_msrp} {renderArrow(guess.comparison.starting_msrp.direction)}</div>
+            </InfoBox>
+          </GuessBox>
+        ))}
+      </GuessContainer>
     </AppContainer>
   );
 }

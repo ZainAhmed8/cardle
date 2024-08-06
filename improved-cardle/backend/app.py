@@ -11,13 +11,19 @@ CORS(app)
 
 def check_value(value, target, exact_range, near_range):
     if value == target:
-        return 'green', 'equal'
+        return '#50C878', 'equal'
     elif abs(value - target) <= exact_range:
-        return 'yellow', 'equal'
-    elif value < target:
-        return 'gray', 'up'
+        return '#50C878', 'equal'
+    elif abs(value - target) <= near_range:
+        if value < target:
+            return '#E4D00A', 'up'
+        else: 
+            return '#E4D00A', 'down'
     else:
-        return 'gray', 'down'
+        if value < target:
+            return '#808080', 'up'
+        else: 
+            return '#808080', 'down'
 
 @app.route('/api/years', methods=['GET'])
 def get_years():
@@ -65,42 +71,66 @@ def get_car_of_the_day():
     car_of_the_day['_id'] = str(car_of_the_day['_id'])
     return jsonify(car_of_the_day)
 
+@app.route('/api/car_details', methods=['GET'])
+def get_car_details():
+    year = request.args.get('year')
+    make = request.args.get('make')
+    model = request.args.get('model')
+    
+    if not year or not make or not model:
+        return jsonify({'error': 'Missing required parameters'}), 400
+
+    car = mongo.db.cardle_coll.find_one({
+        'year': int(year),
+        'make': make,
+        'model': model
+    })
+
+    if not car:
+        return jsonify({'error': 'Car not found'}), 404
+
+    car['_id'] = str(car['_id'])
+    return jsonify(car)
+
 @app.route('/submit_guess', methods=['POST'])
 def submit_guess():
     data = request.json
     guess = {
         'year': data.get('year'),
         'make': data.get('make'),
-        'model': data.get('model'),
-        'body_styles': data.get('body_styles'),
-        'country': data.get('country'),
-        'starting_msrp': data.get('starting_msrp'),
+        'model': data.get('model')
     }
     car_of_the_day_id = data.get('car_of_the_day_id')
     car_of_the_day = mongo.db.cardle_coll.find_one({'_id': ObjectId(car_of_the_day_id)})
 
+    # Fetch the details of the guessed car from the database
+    guessed_car = mongo.db.cardle_coll.find_one({
+        'year': guess['year'],
+        'make': guess['make'],
+        'model': guess['model']
+    })
+
+    if not guessed_car:
+        return jsonify({'error': 'Guessed car not found'}), 404
+
     comparison = {}
-    for key in guess:
+    for key in ['year', 'make', 'model', 'body_styles', 'country', 'starting_msrp']:
         if key in ['year', 'starting_msrp']:
             if key == 'year':
                 exact_range = 0
                 near_range = 3
             elif key == 'starting_msrp':
-                exact_range = 5000
-                near_range = 10000
-            color, arrow = check_value(guess[key], car_of_the_day[key], exact_range, near_range)
+                exact_range = 10000
+                near_range = 20000
+            color, arrow = check_value(guessed_car[key], car_of_the_day[key], exact_range, near_range)
             comparison[key] = {'match': color, 'direction': arrow}
         else:
-            comparison[key] = {'match': 'green' if guess[key] == car_of_the_day[key] else 'gray'}
-
-    if 'guesses' not in data:
-        data['guesses'] = []
-    data['guesses'].append(guess)
+            comparison[key] = {'match': '#50C878' if guessed_car[key] == car_of_the_day[key] else '#808080'}
 
     result = {
         'comparison': comparison,
-        'guesses_left': 10 - len(data['guesses']),
-        'all_guesses': data['guesses'],
+        'guesses_left': 10 - len(data.get('guesses', [])) - 1,
+        'all_guesses': data.get('guesses', []) + [guess]
     }
 
     return jsonify(result)
