@@ -69,16 +69,16 @@ function App() {
   const [years, setYears] = useState([]);
   const [makes, setMakes] = useState([]);
   const [models, setModels] = useState([]);
+  const [comparisonResult, setComparisonResult] = useState(null);
+  const [guessesLeft, setGuessesLeft] = useState(10);
 
   useEffect(() => {
-    // Fetch the list of unique years from the database
     axios.get('/api/years').then(response => {
       setYears(response.data);
     });
   }, []);
 
   useEffect(() => {
-    // Fetch the makes for the selected year
     if (year) {
       axios.get(`/api/makes?year=${year}`).then(response => {
         setMakes(response.data);
@@ -90,7 +90,6 @@ function App() {
   }, [year]);
 
   useEffect(() => {
-    // Fetch the models for the selected make and year
     if (make) {
       axios.get(`/api/models?make=${make}&year=${year}`).then(response => {
         setModels(response.data);
@@ -109,6 +108,22 @@ function App() {
 
   const handleModelChange = (e) => {
     setModel(e.target.value);
+  };
+
+  const handleSubmitGuess = () => {
+    const guess = {
+      year: parseInt(year, 10),
+      make,
+      model,
+      car_of_the_day_id: 'YOUR_CAR_OF_THE_DAY_ID' // Replace this with the actual ID or fetch it dynamically
+    };
+
+    axios.post('/submit_guess', guess).then(response => {
+      setComparisonResult(response.data.comparison);
+      setGuessesLeft(response.data.guesses_left);
+    }).catch(error => {
+      console.error('Error submitting guess:', error);
+    });
   };
 
   return (
@@ -132,38 +147,30 @@ function App() {
           <option key={model} value={model}>{model}</option>
         ))}
       </Select>
-      <InfoContainer>
-        <InfoBox bgColor="#a8d600" color="#000">
-          Most Recent Year
-          <br />
-          2011
-        </InfoBox>
-        <InfoBox>
-          Country
-          <br />
-          USA
-        </InfoBox>
-        <InfoBox>
-          Body Type
-          <br />
-          Hip Hop
-        </InfoBox>
-        <InfoBox>
-          Manufacturer
-          <br />
-          Solo
-        </InfoBox>
-        <InfoBox>
-          Average MSRP
-          <br />
-          #53
-        </InfoBox>
-      </InfoContainer>
+
+      {comparisonResult && (
+        <InfoContainer>
+          {Object.keys(comparisonResult).map(key => (
+            <InfoBox key={key} bgColor={comparisonResult[key].match === 'green' ? '#0f0' : '#f00'}>
+              {key.charAt(0).toUpperCase() + key.slice(1)}:
+              <br />
+              {comparisonResult[key].match}
+            </InfoBox>
+          ))}
+        </InfoContainer>
+      )}
+
       <ButtonContainer>
-        <Button color="#444" hoverColor="#666">No Match</Button>
-        <Button color="#ff0" hoverColor="#ff8">Close</Button>
-        <Button color="#0f0" hoverColor="#8f8">Match</Button>
+        <Button color="#0f0" hoverColor="#8f8" onClick={handleSubmitGuess}>
+          Submit Guess
+        </Button>
       </ButtonContainer>
+
+      {guessesLeft > 0 ? (
+        <p>Guesses left: {guessesLeft}</p>
+      ) : (
+        <p>No more guesses left!</p>
+      )}
     </AppContainer>
   );
 }
