@@ -114,6 +114,7 @@ def submit_guess():
         return jsonify({'error': 'Guessed car not found'}), 404
 
     comparison = {}
+    is_correct = True
     for key in ['year', 'make', 'model', 'body_styles', 'country', 'starting_msrp']:
         if key in ['year', 'starting_msrp']:
             if key == 'year':
@@ -124,13 +125,18 @@ def submit_guess():
                 near_range = 20000
             color, arrow = check_value(guessed_car[key], car_of_the_day[key], exact_range, near_range)
             comparison[key] = {'match': color, 'direction': arrow}
+            if color != '#50C878':
+                is_correct = False
         else:
             comparison[key] = {'match': '#50C878' if guessed_car[key] == car_of_the_day[key] else '#808080'}
+            if color != '#50C878':
+                is_correct = False
 
     result = {
         'comparison': comparison,
         'guesses_left': 10 - len(data.get('guesses', [])) - 1,
-        'all_guesses': data.get('guesses', []) + [guess]
+        'all_guesses': data.get('guesses', []) + [guess],
+        'is_correct': is_correct
     }
 
     return jsonify(result)

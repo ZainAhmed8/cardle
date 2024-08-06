@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-// import Flag from 'react-world-flags'
+import Confetti from 'react-confetti';
+
 
 const renderArrow = (direction) => {
   if (direction === 'up') {
@@ -92,6 +93,30 @@ const Button = styled.button`
   }
 `;
 
+const WinnerScreen = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1b1b1b;
+  color: #fff;
+  min-height: 100vh;
+  font-size: 2em;
+  font-weight: bold;
+`;
+
+const LoserScreen = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1b1b1b;
+  color: #fff;
+  min-height: 100vh;
+  font-size: 2em;
+  font-weight: bold;
+`;
+
 function App() {
   const [year, setYear] = useState('');
   const [make, setMake] = useState('');
@@ -100,6 +125,10 @@ function App() {
   const [makes, setMakes] = useState([]);
   const [models, setModels] = useState([]);
   const [guesses, setGuesses] = useState([]);
+  const [isCorrectGuess, setIsCorrectGuess] = useState(false);
+  const [guessesLeft, setGuessesLeft] = useState(10);
+  const [correctCar, setCorrectCar] = useState(null);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   useEffect(() => {
     axios.get('/api/years').then(response => {
@@ -154,12 +183,22 @@ function App() {
           year,
           make,
           model,
-          body_styles: guessedCarDetails.body_styles,
+          body_styles: guessedCarDetails.body_styles.join(', '),
           country: guessedCarDetails.country,
           starting_msrp: guessedCarDetails.starting_msrp,
           comparison: response.data.comparison,
         };
-        setGuesses([...guesses, newGuess]);
+        setGuesses([newGuess, ...guesses]);
+        setIsCorrectGuess(response.data.is_correct);
+        setGuessesLeft(response.data.guesses_left);
+
+        if (response.data.guesses_left <= 0) {
+          axios.get('/get_car_of_the_day').then(carResponse => {
+            setCorrectCar(carResponse.data);
+            setIsGameOver(true);
+          });
+        }
+
       }).catch(error => {
         console.error('Error submitting guess:', error);
       });
@@ -167,6 +206,48 @@ function App() {
       console.error('Error fetching car details:', error);
     });
   };
+
+
+  const handleGoBack = () => {
+    setIsCorrectGuess(false);
+  };
+
+  const handleResetGame = () => {
+    setYear('');
+    setMake('');
+    setModel('');
+    setGuesses([]);
+    setIsCorrectGuess(false);
+  }
+
+  if (isCorrectGuess) {
+    return (
+      <WinnerScreen>
+        <Confetti />
+        <div>Congratulations!</div>
+        <div>You guessed the correct car!</div>
+        <ButtonContainer>
+          <Button color="#ff0" hoverColor="#ffd700" onClick={handleGoBack}>
+            Back to Home
+          </Button>
+        </ButtonContainer>
+      </WinnerScreen>
+    );
+  }
+
+  if (isGameOver) {
+    return (
+      <LoserScreen>
+        <div>Sorry, you lose!</div>
+        <div>The correct car is {correctCar?.year} {correctCar?.make} {correctCar?.model}.</div>
+        <ButtonContainer>
+          <Button color="#ff0" hoverColor="#ffd700" onClick={handleGoBack}>
+            Back to Home
+          </Button>
+        </ButtonContainer>
+      </LoserScreen>
+    );
+  }
 
   return (
     <AppContainer>
