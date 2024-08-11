@@ -22,6 +22,16 @@ const AppContainer = styled.div`
   background-color: #1b1b1b;
   color: #fff;
   min-height: 100vh;
+  position: relative
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative; /* Make the Header relative so the QuestionMarkButton can be absolutely positioned */
+  padding: 20px 20px; /* Add some padding to give the header some space */
 `;
 
 const Select = styled.select`
@@ -106,18 +116,6 @@ const WinnerScreen = styled.div`
   font-weight: bold;
 `;
 
-const LoserScreen = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #1b1b1b;
-  color: #fff;
-  min-height: 100vh;
-  font-size: 2em;
-  font-weight: bold;
-`;
-
 const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -127,7 +125,7 @@ const MessageContainer = styled.div`
   padding: 20px;
   background-color: #333; /* Background color for the message */
   border-radius: 10px; /* Rounded corners */
-  color: #f00; 
+  color: #fff; 
 `;
 
 const MessageText = styled.div`
@@ -158,6 +156,50 @@ const ResetButton = styled.button`
   }
 `;
 
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background: #808080;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  opacity: 1;
+  position: relative;
+  align-items: center;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+`;
+
+const QuestionMarkButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #fff;
+  margin-left: 20px;
+`;
+
 const countryCodeMap = {
   "Germany": "DE",    // ISO 3166-1 alpha-2 code for Germany
   "Italy": "IT",      // ISO 3166-1 alpha-2 code for Italy
@@ -168,6 +210,24 @@ const countryCodeMap = {
   "USA": "US",        // ISO 3166-1 alpha-2 code for United States
   "Vietnam": "VN"     // ISO 3166-1 alpha-2 code for Vietnam
 };
+
+function InstructionsModal({ isOpen, onClose }) {
+  if (!isOpen) return null;
+
+  return (
+    <ModalOverlay>
+      <ModalContent>
+        <CloseButton onClick={onClose}>&times;</CloseButton>
+        <h2>Instructions</h2>
+        <p>This is Cardle. </p>
+        <p>Make a guess for a car. You will have 10 attempts to guess the car correctly.</p>
+        <p>After each guess, there will be attributes of the car that are displayed.</p>
+        <p>If a box is orange, that means that you are very close to the attributes of the correct car.</p>
+        <p>If it is green, that means that it is the same as the correct car. Good luck!</p>
+      </ModalContent>
+    </ModalOverlay>
+  );
+}
 
 function App() {
   const [year, setYear] = useState('');
@@ -181,6 +241,9 @@ function App() {
   const [guessesLeft, setGuessesLeft] = useState(10);
   const [correctCar, setCorrectCar] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isInstructionsOpen, setIsInstructionsOpen] = useState(false);
+
+  const toggleInstructions = () => setIsInstructionsOpen(!isInstructionsOpen);
 
   useEffect(() => {
     axios.get('/api/years').then(response => {
@@ -275,7 +338,7 @@ function App() {
     setIsCorrectGuess(false);
     setIsGameOver(false);
   }
-
+  /*
   if (isCorrectGuess) {
     return (
       <WinnerScreen>
@@ -290,7 +353,7 @@ function App() {
       </WinnerScreen>
     );
   }
-  /*
+  
   if (isGameOver) {
     return (
       <LoserScreen>
@@ -308,20 +371,33 @@ function App() {
 
   return (
     <AppContainer>
-      <h1>Cardle</h1>
+      <Header>
+        <h1>Cardle</h1>
+        <QuestionMarkButton onClick={toggleInstructions}>?</QuestionMarkButton>
+      </Header>
+      <InstructionsModal isOpen={isInstructionsOpen} onClose={toggleInstructions} />
 
-      {isGameOver && (
+      {(isGameOver || isCorrectGuess) && (
         <MessageContainer>
-          <MessageText>Sorry, you lose!</MessageText>
-          <SubMessageText>
-            The correct car is {correctCar?.year} {correctCar?.make} {correctCar?.model}!
-          </SubMessageText>
+          {isCorrectGuess ? (
+            <>
+              <Confetti />
+              <MessageText>Congratulations!</MessageText>
+              <SubMessageText>You guessed the correct car!</SubMessageText>
+            </>
+          ) : (
+            <>
+              <MessageText>Sorry, you lose!</MessageText>
+              <SubMessageText>
+                The correct car is {correctCar?.year} {correctCar?.make} {correctCar?.model}!
+              </SubMessageText>
+            </>
+          )}
           <ResetButton onClick={handleResetGame}>Reset Game</ResetButton>
         </MessageContainer>
-
       )}
 
-      {!isGameOver && (
+      {!(isGameOver || isCorrectGuess) && (
         <>
           <Select value={year} onChange={handleYearChange}>
             <option value="">Select Year</option>
