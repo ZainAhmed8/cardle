@@ -117,6 +117,46 @@ const LoserScreen = styled.div`
   font-weight: bold;
 `;
 
+const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+  padding: 20px;
+  background-color: #333; /* Background color for the message */
+  border-radius: 10px; /* Rounded corners */
+  color: #f00; 
+`;
+
+const MessageText = styled.div`
+  font-size: 2em; /* Make the text larger */
+  font-weight: bold; /* Make the text bold */
+  text-align: center;
+  margin-bottom: 10px; /* Space between the two lines */
+`;
+
+const SubMessageText = styled.div`
+  font-size: 1.5em; /* Slightly smaller for the second line */
+  font-weight: normal; /* Normal weight for the sub message */
+  text-align: center;
+`;
+
+const ResetButton = styled.button`
+  padding: 10px 20px;
+  margin-top: 20px; /* Space between the message and the button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #a200ff;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  &:hover {
+    background-color: #da99ff;
+  }
+`;
+
 function App() {
   const [year, setYear] = useState('');
   const [make, setMake] = useState('');
@@ -188,11 +228,14 @@ function App() {
           starting_msrp: guessedCarDetails.starting_msrp,
           comparison: response.data.comparison,
         };
-        setGuesses([newGuess, ...guesses]);
-        setIsCorrectGuess(response.data.is_correct);
-        setGuessesLeft(response.data.guesses_left);
 
-        if (response.data.guesses_left <= 0) {
+        const updGuesses = [newGuess, ...guesses]
+        const updGuessesLeft = 10 - updGuesses.length;
+        setGuesses(updGuesses);
+        setIsCorrectGuess(response.data.is_correct);
+        setGuessesLeft(updGuessesLeft)
+
+        if (updGuessesLeft <= 0) {
           axios.get('/get_car_of_the_day').then(carResponse => {
             setCorrectCar(carResponse.data);
             setIsGameOver(true);
@@ -218,6 +261,7 @@ function App() {
     setModel('');
     setGuesses([]);
     setIsCorrectGuess(false);
+    setIsGameOver(false);
   }
 
   if (isCorrectGuess) {
@@ -234,7 +278,7 @@ function App() {
       </WinnerScreen>
     );
   }
-
+  /*
   if (isGameOver) {
     return (
       <LoserScreen>
@@ -248,10 +292,52 @@ function App() {
       </LoserScreen>
     );
   }
+  */
 
   return (
     <AppContainer>
       <h1>Cardle</h1>
+
+      {isGameOver && (
+        <MessageContainer>
+          <MessageText>Sorry, you lose!</MessageText>
+          <SubMessageText>
+            The correct car is {correctCar?.year} {correctCar?.make} {correctCar?.model}!
+          </SubMessageText>
+          <ResetButton onClick={handleResetGame}>Reset Game</ResetButton>
+        </MessageContainer>
+
+      )}
+
+      {!isGameOver && (
+        <>
+          <Select value={year} onChange={handleYearChange}>
+            <option value="">Select Year</option>
+            {years.map(year => (
+              <option key={year} value={year}>{year}</option>
+            ))}
+          </Select>
+          <Select value={make} onChange={handleMakeChange} disabled={!year}>
+            <option value="">Select Make</option>
+            {makes.map(make => (
+              <option key={make} value={make}>{make}</option>
+            ))}
+          </Select>
+          <Select value={model} onChange={handleModelChange} disabled={!make}>
+            <option value="">Select Model</option>
+            {models.map(model => (
+              <option key={model} value={model}>{model}</option>
+            ))}
+          </Select>
+
+          <ButtonContainer>
+            <Button color="#a200ff" hoverColor="#da99ff" onClick={handleSubmitGuess}>
+              Submit Guess
+            </Button>
+          </ButtonContainer>
+        </>
+      )}
+      {/*
       <Select value={year} onChange={handleYearChange}>
         <option value="">Select Year</option>
         {years.map(year => (
@@ -276,7 +362,7 @@ function App() {
           Submit Guess
         </Button>
       </ButtonContainer>
-
+      */}
       <GuessContainer>
         {guesses.map((guess, index) => (
           <GuessBox key={index}>
