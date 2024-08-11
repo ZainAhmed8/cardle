@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Confetti from 'react-confetti';
+import Flag from 'react-world-flags';
 
 
 const renderArrow = (direction) => {
@@ -156,6 +157,17 @@ const ResetButton = styled.button`
     background-color: #da99ff;
   }
 `;
+
+const countryCodeMap = {
+  "Germany": "DE",    // ISO 3166-1 alpha-2 code for Germany
+  "Italy": "IT",      // ISO 3166-1 alpha-2 code for Italy
+  "Japan": "JP",      // ISO 3166-1 alpha-2 code for Japan
+  "South Korea": "KR",// ISO 3166-1 alpha-2 code for South Korea
+  "Sweden": "SE",     // ISO 3166-1 alpha-2 code for Sweden
+  "UK": "GB",         // ISO 3166-1 alpha-2 code for United Kingdom
+  "USA": "US",        // ISO 3166-1 alpha-2 code for United States
+  "Vietnam": "VN"     // ISO 3166-1 alpha-2 code for Vietnam
+};
 
 function App() {
   const [year, setYear] = useState('');
@@ -382,7 +394,7 @@ function App() {
               <div>Body Styles</div> <div>{guess.body_styles}</div>
             </InfoBox>
             <InfoBox bgColor={guess.comparison.country.match}>
-              <div>Country</div><div>{guess.country}</div>
+              <div>Country</div><div>{countryCodeMap[guess.country] && <Flag code={countryCodeMap[guess.country]} height="48" />}</div>
             </InfoBox>
             <InfoBox bgColor={guess.comparison.starting_msrp.match}>
               <div>Starting MSRP</div><div>{guess.starting_msrp} {renderArrow(guess.comparison.starting_msrp.direction)}</div>
