@@ -66,7 +66,7 @@ def get_car_of_the_day():
     # if not car_of_the_day_entry:
     #    return jsonify({'error': 'Car of the day not set'}), 404
 
-    car_of_the_day_id = '66afcf6373a71b92e6293a41'
+    car_of_the_day_id = '66afcf6273a71b92e6292226'
     car_of_the_day = mongo.db.cardle_coll.find_one({'_id': ObjectId(car_of_the_day_id)})
     car_of_the_day['_id'] = str(car_of_the_day['_id'])
     return jsonify(car_of_the_day)

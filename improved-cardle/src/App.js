@@ -104,18 +104,6 @@ const Button = styled.button`
   }
 `;
 
-const WinnerScreen = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #1b1b1b;
-  color: #fff;
-  min-height: 100vh;
-  font-size: 2em;
-  font-weight: bold;
-`;
-
 const MessageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -288,7 +276,7 @@ function App() {
       year: parseInt(year, 10),
       make,
       model,
-      car_of_the_day_id: '66afcf6373a71b92e6293a41' // CAR OF THE DAY, CURRENTLY 2020 Porsche Panamera
+      car_of_the_day_id: '66afcf6273a71b92e6292226' // CAR OF THE DAY, CURRENTLY 2004 HONDA S2000
     };
 
     axios.get(`/api/car_details?year=${year}&make=${make}&model=${model}`).then(response => {
@@ -325,10 +313,11 @@ function App() {
     });
   };
 
-
+  /*
   const handleGoBack = () => {
     setIsCorrectGuess(false);
   };
+  */
 
   const handleResetGame = () => {
     setYear('');
