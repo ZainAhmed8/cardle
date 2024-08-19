@@ -62,12 +62,12 @@ def set_car_of_the_day():
 
 @app.route('/get_car_of_the_day', methods=['GET'])
 def get_car_of_the_day():
-    # car_of_the_day_entry = mongo.db.car_of_the_day.find_one({})
-    # if not car_of_the_day_entry:
-    #    return jsonify({'error': 'Car of the day not set'}), 404
+    car_of_the_day_entry = mongo.db.car_of_the_day.find_one({})
+    if not car_of_the_day_entry:
+       return jsonify({'error': 'Car of the day not set'}), 404
 
-    car_of_the_day_id = '66afcf6273a71b92e6292226'
-    car_of_the_day = mongo.db.cardle_coll.find_one({'_id': ObjectId(car_of_the_day_id)})
+    # car_of_the_day_id = '66afcf6273a71b92e6292226'
+    car_of_the_day = mongo.db.cardle_coll.find_one({'_id': ObjectId(car_of_the_day_entry['car_of_the_day_id'])})
     car_of_the_day['_id'] = str(car_of_the_day['_id'])
     return jsonify(car_of_the_day)
 
@@ -129,9 +129,9 @@ def submit_guess():
                 is_correct = False
         else:
             comparison[key] = {'match': '#50C878' if guessed_car[key] == car_of_the_day[key] else '#808080'}
-            if color != '#50C878':
+            if comparison[key]['match'] != '#50C878':
                 is_correct = False
-
+            
     result = {
         'comparison': comparison,
         'guesses_left': 10 - len(data.get('guesses', [])) - 1,

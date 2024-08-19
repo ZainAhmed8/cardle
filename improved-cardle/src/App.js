@@ -272,44 +272,49 @@ function App() {
   };
 
   const handleSubmitGuess = () => {
-    const guess = {
-      year: parseInt(year, 10),
-      make,
-      model,
-      car_of_the_day_id: '66afcf6273a71b92e6292226' // CAR OF THE DAY, CURRENTLY 2004 HONDA S2000
-    };
-
-    axios.get(`/api/car_details?year=${year}&make=${make}&model=${model}`).then(response => {
-      const guessedCarDetails = response.data;
-      axios.post('/submit_guess', guess).then(response => {
-        const newGuess = {
-          year,
-          make,
-          model,
-          body_styles: guessedCarDetails.body_styles.join(', '),
-          country: guessedCarDetails.country,
-          starting_msrp: guessedCarDetails.starting_msrp,
-          comparison: response.data.comparison,
-        };
-
-        const updGuesses = [newGuess, ...guesses]
-        const updGuessesLeft = 10 - updGuesses.length;
-        setGuesses(updGuesses);
-        setIsCorrectGuess(response.data.is_correct);
-        setGuessesLeft(updGuessesLeft)
-
-        if (updGuessesLeft <= 0) {
-          axios.get('/get_car_of_the_day').then(carResponse => {
-            setCorrectCar(carResponse.data);
-            setIsGameOver(true);
-          });
-        }
-
+    axios.get('/get_car_of_the_day').then(response => {
+      const car_of_the_day_id = response.data._id;
+      
+      const guess = {
+        year: parseInt(year, 10),
+        make,
+        model,
+        car_of_the_day_id
+      };
+  
+      axios.get(`/api/car_details?year=${year}&make=${make}&model=${model}`).then(response => {
+        const guessedCarDetails = response.data;
+        axios.post('/submit_guess', guess).then(response => {
+          const newGuess = {
+            year,
+            make,
+            model,
+            body_styles: guessedCarDetails.body_styles.join(', '),
+            country: guessedCarDetails.country,
+            starting_msrp: guessedCarDetails.starting_msrp,
+            comparison: response.data.comparison,
+          };
+  
+          const updGuesses = [newGuess, ...guesses];
+          const updGuessesLeft = 10 - updGuesses.length;
+          setGuesses(updGuesses);
+          setIsCorrectGuess(response.data.is_correct);
+          setGuessesLeft(updGuessesLeft);
+  
+          if (updGuessesLeft <= 0) {
+            axios.get('/get_car_of_the_day').then(carResponse => {
+              setCorrectCar(carResponse.data);
+              setIsGameOver(true);
+            });
+          }
+        }).catch(error => {
+          console.error('Error submitting guess:', error);
+        });
       }).catch(error => {
-        console.error('Error submitting guess:', error);
+        console.error('Error fetching car details:', error);
       });
     }).catch(error => {
-      console.error('Error fetching car details:', error);
+      console.error('Error fetching car of the day:', error);
     });
   };
 
