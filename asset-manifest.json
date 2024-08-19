@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/improved-cardle/static/css/main.1ddc149d.css",
+    "main.js": "/improved-cardle/static/js/main.bf534056.js",
+    "static/js/453.c21a857c.chunk.js": "/improved-cardle/static/js/453.c21a857c.chunk.js",
+    "index.html": "/improved-cardle/index.html",
+    "main.1ddc149d.css.map": "/improved-cardle/static/css/main.1ddc149d.css.map",
+    "main.bf534056.js.map": "/improved-cardle/static/js/main.bf534056.js.map",
+    "453.c21a857c.chunk.js.map": "/improved-cardle/static/js/453.c21a857c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1ddc149d.css",
+    "static/js/main.bf534056.js"
+  ]
+}
