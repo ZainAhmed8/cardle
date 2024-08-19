@@ -2,7 +2,7 @@
   "name": "improved-cardle",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://zainahmed8.github.io/improved-cardle",
+  "homepage": "https://zainahmed8.github.io/cardle",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
