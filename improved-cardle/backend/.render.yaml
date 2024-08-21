@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: cardle-app
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    envVars:
+      - key: MONGO_URI
+        value: "mongodb+srv://zainahmed8:9xohXdECeL337HLM@cardlecluster.0nj0jgx.mongodb.net/CardleMain"
