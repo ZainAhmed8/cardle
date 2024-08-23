@@ -234,14 +234,14 @@ function App() {
   const toggleInstructions = () => setIsInstructionsOpen(!isInstructionsOpen);
 
   useEffect(() => {
-    axios.get('/api/years').then(response => {
+    axios.get('https://cardle.onrender.com/api/years').then(response => {
       setYears(response.data);
     });
   }, []);
 
   useEffect(() => {
     if (year) {
-      axios.get(`/api/makes?year=${year}`).then(response => {
+      axios.get(`https://cardle.onrender.com/api/makes?year=${year}`).then(response => {
         setMakes(response.data);
         setMake('');
         setModel('');
@@ -252,7 +252,7 @@ function App() {
 
   useEffect(() => {
     if (make) {
-      axios.get(`/api/models?make=${make}&year=${year}`).then(response => {
+      axios.get(`https://cardle.onrender.com/api/models?make=${make}&year=${year}`).then(response => {
         setModels(response.data);
         setModel('');
       });
@@ -272,7 +272,7 @@ function App() {
   };
 
   const handleSubmitGuess = () => {
-    axios.get('/get_car_of_the_day').then(response => {
+    axios.get('https://cardle.onrender.com/get_car_of_the_day').then(response => {
       const car_of_the_day_id = response.data._id;
       
       const guess = {
@@ -282,9 +282,9 @@ function App() {
         car_of_the_day_id
       };
   
-      axios.get(`/api/car_details?year=${year}&make=${make}&model=${model}`).then(response => {
+      axios.get(`https://cardle.onrender.com/api/car_details?year=${year}&make=${make}&model=${model}`).then(response => {
         const guessedCarDetails = response.data;
-        axios.post('/submit_guess', guess).then(response => {
+        axios.post('https://cardle.onrender.com/submit_guess', guess).then(response => {
           const newGuess = {
             year,
             make,
@@ -302,7 +302,7 @@ function App() {
           setGuessesLeft(updGuessesLeft);
   
           if (updGuessesLeft <= 0) {
-            axios.get('/get_car_of_the_day').then(carResponse => {
+            axios.get('https://cardle.onrender.com/get_car_of_the_day').then(carResponse => {
               setCorrectCar(carResponse.data);
               setIsGameOver(true);
             });
