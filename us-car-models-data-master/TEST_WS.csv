@@ -1,0 +1,283 @@
+year,make,model,body_styles,starting_msrp
+1992,Acura,Integra,"[""Sedan"", ""Hatchback""]",12925.0
+1992,Acura,Legend,"[""Sedan"", ""Coupe""]",30745.0
+1992,Acura,NSX,"[""Coupe""]",MSRP not found
+1992,Acura,Vigor,"[""Sedan""]",23590.0
+1992,Alfa Romeo,164,"[""Sedan""]",MSRP not found
+1992,Alfa Romeo,Spider,"[""Convertible""]",MSRP not found
+1992,Audi,100,"[""Sedan"", ""Wagon""]",28105.0
+1992,Audi,80,"[""Sedan""]",23055.0
+1992,Audi,Quattro,"[""Sedan""]",MSRP not found
+1992,Audi,S4,"[""Sedan""]",44155.0
+1992,BMW,3 Series,"[""Coupe"", ""Convertible"", ""Sedan""]",23275.0
+1992,BMW,5 Series,"[""Sedan"", ""Wagon""]",35975.0
+1992,BMW,7 Series,"[""Sedan""]",53365.0
+1992,BMW,8 Series,"[""Coupe""]",78500.0
+1992,BMW,M5,"[""Sedan""]",MSRP not found
+1992,Buick,Century,"[""Coupe"", ""Sedan"", ""Wagon""]",14295.0
+1992,Buick,LeSabre,"[""Sedan""]",19250.0
+1992,Buick,Park Avenue,"[""Sedan""]",25885.0
+1992,Buick,Regal,"[""Coupe"", ""Sedan""]",17115.0
+1992,Buick,Riviera,"[""Coupe""]",26015.0
+1992,Buick,Roadmaster,"[""Sedan"", ""Wagon""]",22420.0
+1992,Buick,Skylark,"[""Sedan"", ""Coupe""]",14035.0
+1992,Cadillac,Allante,"[""Convertible""]",MSRP not found
+1992,Cadillac,Brougham,"[""Sedan""]",32340.0
+1992,Cadillac,DeVille,"[""Sedan"", ""Coupe""]",32340.0
+1992,Cadillac,Eldorado,"[""Coupe""]",33070.0
+1992,Cadillac,Fleetwood,"[""Sedan"", ""Coupe""]",36960.0
+1992,Cadillac,Seville,"[""Sedan""]",35575.0
+1992,Chevrolet,1500 Extended Cab,"[""Pickup""]",13990.0
+1992,Chevrolet,1500 Regular Cab,"[""Pickup""]",11195.0
+1992,Chevrolet,2500 Extended Cab,"[""Pickup""]",14630.0
+1992,Chevrolet,2500 Regular Cab,"[""Pickup""]",MSRP not found
+1992,Chevrolet,3500 Crew Cab,"[""Pickup""]",17306.0
+1992,Chevrolet,3500 Extended Cab,"[""Pickup""]",17306.0
+1992,Chevrolet,3500 Regular Cab,"[""Pickup""]",17306.0
+1992,Chevrolet,APV Cargo,"[""Van/Minivan""]",MSRP not found
+1992,Chevrolet,Astro Cargo,"[""Van/Minivan""]",14540.0
+1992,Chevrolet,Astro Passenger,"[""Van/Minivan""]",MSRP not found
+1992,Chevrolet,Beretta,"[""Coupe""]",MSRP not found
+1992,Chevrolet,Blazer,"[""SUV""]",19875.0
+1992,Chevrolet,Camaro,"[""Hatchback"", ""Convertible""]",12444.0
+1992,Chevrolet,Caprice,"[""Sedan"", ""Wagon""]",17855.0
+1992,Chevrolet,Cavalier,"[""Coupe"", ""Sedan"", ""Wagon"", ""Convertible""]",9374.0
+1992,Chevrolet,Corsica,"[""Sedan""]",11474.0
+1992,Chevrolet,Corvette,"[""Hatchback"", ""Convertible""]",34185.0
+1992,Chevrolet,G-Series G10,"[""Van/Minivan""]",15135.0
+1992,Chevrolet,G-Series G20,"[""Van/Minivan""]",15135.0
+1992,Chevrolet,G-Series G30,"[""Van/Minivan""]",15135.0
+1992,Chevrolet,Lumina,"[""Sedan"", ""Coupe""]",13095.0
+1992,Chevrolet,Lumina APV,"[""Van/Minivan""]",MSRP not found
+1992,Chevrolet,S10 Blazer,"[""SUV""]",15298.0
+1992,Chevrolet,S10 Extended Cab,"[""Pickup""]",MSRP not found
+1992,Chevrolet,S10 Regular Cab,"[""Pickup""]",9192.0
+1992,Chevrolet,Sportvan G10,"[""Van/Minivan""]",15135.0
+1992,Chevrolet,Sportvan G20,"[""Van/Minivan""]",15135.0
+1992,Chevrolet,Sportvan G30,"[""Van/Minivan""]",MSRP not found
+1992,Chevrolet,Suburban 1500,"[""SUV""]",19999.0
+1992,Chevrolet,Suburban 2500,"[""SUV""]",18795.0
+1992,Chrysler,Fifth Ave,"[""Sedan""]",MSRP not found
+1992,Chrysler,Imperial,"[""Sedan""]",28453.0
+1992,Chrysler,LeBaron,"[""Sedan"", ""Coupe"", ""Convertible""]",14692.0
+1992,Chrysler,New Yorker,"[""Sedan""]",19414.0
+1992,Chrysler,Town & Country,"[""Van/Minivan""]",MSRP not found
+1992,Daihatsu,Charade,"[""Sedan"", ""Hatchback""]",6797.0
+1992,Daihatsu,Rocky,"[""SUV""]",11697.0
+1992,Dodge,Caravan Cargo,"[""Van/Minivan""]",MSRP not found
+1992,Dodge,Caravan Passenger,"[""Van/Minivan""]",MSRP not found
+1992,Dodge,Colt,"[""Hatchback""]",7670.0
+1992,Dodge,D150 Club Cab,"[""Pickup""]",MSRP not found
+1992,Dodge,D150 Regular Cab,"[""Pickup""]",MSRP not found
+1992,Dodge,D250 Club Cab,"[""Pickup""]",16720.0
+1992,Dodge,D250 Regular Cab,"[""Pickup""]",16720.0
+1992,Dodge,D350 Club Cab,"[""Pickup""]",19402.0
+1992,Dodge,D350 Regular Cab,"[""Pickup""]",21620.0
+1992,Dodge,Dakota Club Cab,"[""Pickup""]",9315.0
+1992,Dodge,Dakota Regular Cab,"[""Pickup""]",MSRP not found
+1992,Dodge,Daytona,"[""Hatchback""]",10968.0
+1992,Dodge,Dynasty,"[""Sedan""]",14842.0
+1992,Dodge,Grand Caravan Passenger,"[""Van/Minivan""]",15804.0
+1992,Dodge,Monaco,"[""Sedan""]",14854.0
+1992,Dodge,Ram 50 Regular Cab,"[""Pickup""]",MSRP not found
+1992,Dodge,Ram Van B150,"[""Van/Minivan""]",14349.0
+1992,Dodge,Ram Van B250,"[""Van/Minivan""]",15178.0
+1992,Dodge,Ram Van B350,"[""Van/Minivan""]",15178.0
+1992,Dodge,Ram Wagon B150,"[""Van/Minivan""]",14349.0
+1992,Dodge,Ram Wagon B250,"[""Van/Minivan""]",15178.0
+1992,Dodge,Ram Wagon B350,"[""Van/Minivan""]",15178.0
+1992,Dodge,Ramcharger,"[""SUV""]",17140.0
+1992,Dodge,Shadow,"[""Hatchback"", ""Convertible""]",8469.0
+1992,Dodge,Spirit,"[""Sedan""]",11955.0
+1992,Dodge,Stealth,"[""Hatchback""]",17523.0
+1992,Dodge,Viper,"[""Convertible""]",MSRP not found
+1992,Eagle,Premier,"[""Sedan""]",16216.0
+1992,Eagle,Summit,"[""Sedan"", ""Hatchback"", ""Wagon""]",8490.0
+1992,Eagle,Talon,"[""Hatchback""]",MSRP not found
+1992,Ford,Aerostar Cargo,"[""Van/Minivan""]",MSRP not found
+1992,Ford,Aerostar Passenger,"[""Van/Minivan""]",MSRP not found
+1992,Ford,Bronco,"[""SUV""]",18852.0
+1992,Ford,Club Wagon,"[""Van/Minivan""]",MSRP not found
+1992,Ford,Crown Victoria,"[""Sedan""]",20108.0
+1992,Ford,Econoline E150 Cargo,"[""Van/Minivan""]",MSRP not found
+1992,Ford,Econoline E250 Cargo,"[""Van/Minivan""]",MSRP not found
+1992,Ford,Econoline E350 Cargo,"[""Van/Minivan""]",MSRP not found
+1992,Ford,Escort,"[""Hatchback"", ""Sedan"", ""Wagon""]",8730.0
+1992,Ford,Explorer,"[""SUV""]",16692.0
+1992,Ford,F150 Regular Cab,"[""Pickup""]",MSRP not found
+1992,Ford,F150 Super Cab,"[""Pickup""]",MSRP not found
+1992,Ford,F250 Regular Cab,"[""Pickup""]",MSRP not found
+1992,Ford,F250 Super Cab,"[""Pickup""]",MSRP not found
+1992,Ford,F350 Crew Cab,"[""Pickup""]",MSRP not found
+1992,Ford,F350 Regular Cab,"[""Pickup""]",MSRP not found
+1992,Ford,F350 Super Cab,"[""Pickup""]",MSRP not found
+1992,Ford,Festiva,"[""Hatchback""]",7236.0
+1992,Ford,Mustang,"[""Coupe"", ""Convertible""]",10655.0
+1992,Ford,Probe,"[""Hatchback""]",12587.0
+1992,Ford,Ranger Regular Cab,"[""Pickup""]",MSRP not found
+1992,Ford,Ranger Super Cab,"[""Pickup""]",9190.0
+1992,Ford,Taurus,"[""Sedan"", ""Wagon""]",15470.0
+1992,Ford,Tempo,"[""Sedan"", ""Coupe""]",10452.0
+1992,Ford,Thunderbird,"[""Coupe""]",16840.0
+1992,Geo,Metro,"[""Hatchback"", ""Convertible""]",7284.0
+1992,Geo,Prizm,"[""Sedan""]",10490.0
+1992,Geo,Storm,"[""Coupe"", ""Hatchback""]",11675.0
+1992,Geo,Tracker,"[""SUV""]",9995.0
+1992,GMC,1500 Club Coupe,"[""Pickup""]",MSRP not found
+1992,GMC,1500 Regular Cab,"[""Pickup""]",11195.0
+1992,GMC,2500 Club Coupe,"[""Pickup""]",15393.0
+1992,GMC,2500 Regular Cab,"[""Pickup""]",14630.0
+1992,GMC,3500 Club Coupe,"[""Pickup""]",MSRP not found
+1992,GMC,3500 Crew Cab,"[""Pickup""]",16352.0
+1992,GMC,3500 Regular Cab,"[""Pickup""]",52688.0
+1992,GMC,Jimmy,"[""SUV""]",15497.0
+1992,GMC,Rally Wagon 1500,"[""Van/Minivan""]",16779.0
+1992,GMC,Rally Wagon 2500,"[""Van/Minivan""]",MSRP not found
+1992,GMC,Rally Wagon 3500,"[""Van/Minivan""]",MSRP not found
+1992,GMC,Safari Cargo,"[""Van/Minivan""]",14608.0
+1992,GMC,Safari Passenger,"[""Van/Minivan""]",MSRP not found
+1992,GMC,Sonoma Club Cab,"[""Pickup""]",MSRP not found
+1992,GMC,Sonoma Regular Cab,"[""Pickup""]",9260.0
+1992,GMC,Suburban 1500,"[""SUV""]",MSRP not found
+1992,GMC,Suburban 2500,"[""SUV""]",MSRP not found
+1992,GMC,Vandura 1500,"[""Van/Minivan""]",MSRP not found
+1992,GMC,Vandura 2500,"[""Van/Minivan""]",14963.0
+1992,GMC,Vandura 3500,"[""Van/Minivan""]",14963.0
+1992,GMC,Yukon,"[""SUV""]",20113.0
+1992,Honda,Accord,"[""Coupe"", ""Wagon"", ""Sedan""]",16115.0
+1992,Honda,Civic,"[""Hatchback"", ""Sedan""]",MSRP not found
+1992,Honda,Prelude,"[""Coupe""]",MSRP not found
+1992,Hyundai,Elantra,"[""Sedan""]",MSRP not found
+1992,Hyundai,Excel,"[""Sedan"", ""Hatchback""]",6975.0
+1992,Hyundai,Scoupe,"[""Coupe""]",MSRP not found
+1992,Hyundai,Sonata,"[""Sedan""]",11530.0
+1992,INFINITI,G,"[""Sedan""]",18685.0
+1992,INFINITI,M,"[""Coupe"", ""Convertible""]",25385.0
+1992,INFINITI,Q,"[""Sedan""]",44400.0
+1992,Isuzu,Amigo,"[""SUV""]",11438.0
+1992,Isuzu,Impulse,"[""Hatchback""]",12838.0
+1992,Isuzu,Regular Cab,"[""Pickup""]",8849.0
+1992,Isuzu,Rodeo,"[""SUV""]",13558.0
+1992,Isuzu,Spacecab,"[""Pickup""]",MSRP not found
+1992,Isuzu,Stylus,"[""Sedan""]",9249.0
+1992,Isuzu,Trooper,"[""SUV""]",MSRP not found
+1992,Jaguar,XJ,"[""Sedan"", ""Coupe"", ""Convertible""]",50080.0
+1992,Jeep,Cherokee,"[""SUV""]",14346.0
+1992,Jeep,Comanche Regular Cab,"[""Pickup""]",MSRP not found
+1992,Jeep,Wrangler,"[""SUV""]",10980.0
+1992,Land Rover,Range Rover,"[""SUV""]",MSRP not found
+1992,Lexus,ES,"[""Sedan""]",25650.0
+1992,Lexus,LS,"[""Sedan""]",MSRP not found
+1992,Lexus,SC,"[""Coupe""]",MSRP not found
+1992,Lincoln,Continental,"[""Sedan""]",MSRP not found
+1992,Lincoln,Mark VII,"[""Coupe""]",32622.0
+1992,Lincoln,Town Car,"[""Sedan""]",MSRP not found
+1992,MAZDA,323,"[""Hatchback""]",6999.0
+1992,MAZDA,626,"[""Sedan""]",13375.0
+1992,MAZDA,929,"[""Sedan""]",28850.0
+1992,MAZDA,B-Series Cab Plus,"[""Pickup""]",8845.0
+1992,MAZDA,B-Series Regular Cab,"[""Pickup""]",8845.0
+1992,MAZDA,MPV,"[""Van/Minivan""]",12995.0
+1992,MAZDA,MX-3,"[""Hatchback""]",11350.0
+1992,MAZDA,MX-5 Miata,"[""Convertible""]",14800.0
+1992,MAZDA,MX-6,"[""Coupe""]",MSRP not found
+1992,MAZDA,Navajo,"[""SUV""]",16285.0
+1992,MAZDA,Protege,"[""Sedan""]",MSRP not found
+1992,Mercedes-Benz,190 E,"[""Sedan""]",MSRP not found
+1992,Mercedes-Benz,300 CE,"[""Coupe""]",MSRP not found
+1992,Mercedes-Benz,300 D,"[""Sedan""]",MSRP not found
+1992,Mercedes-Benz,300 E,"[""Sedan""]",MSRP not found
+1992,Mercedes-Benz,300 SD,"[""Sedan""]",MSRP not found
+1992,Mercedes-Benz,300 SE,"[""Sedan""]",MSRP not found
+1992,Mercedes-Benz,300 SL,"[""Convertible""]",MSRP not found
+1992,Mercedes-Benz,300 TE,"[""Wagon""]",MSRP not found
+1992,Mercedes-Benz,400 E,"[""Sedan""]",56150.0
+1992,Mercedes-Benz,400 SE,"[""Sedan""]",56150.0
+1992,Mercedes-Benz,500 E,"[""Sedan""]",MSRP not found
+1992,Mercedes-Benz,500 SEL,"[""Sedan""]",79550.0
+1992,Mercedes-Benz,500 SL,"[""Convertible""]",MSRP not found
+1992,Mercedes-Benz,600 SEL,"[""Sedan""]",128150.0
+1992,Mercury,Capri,"[""Convertible""]",MSRP not found
+1992,Mercury,Cougar,"[""Coupe""]",16955.0
+1992,Mercury,Grand Marquis,"[""Sedan""]",20761.0
+1992,Mercury,Sable,"[""Sedan"", ""Wagon""]",16908.0
+1992,Mercury,Topaz,"[""Sedan"", ""Coupe""]",10977.0
+1992,Mercury,Tracer,"[""Sedan"", ""Wagon""]",10148.0
+1992,Mitsubishi,3000GT,"[""Hatchback""]",20417.0
+1992,Mitsubishi,Diamante,"[""Sedan""]",MSRP not found
+1992,Mitsubishi,Eclipse,"[""Hatchback""]",11627.0
+1992,Mitsubishi,Expo,"[""Wagon""]",11537.0
+1992,Mitsubishi,Galant,"[""Sedan""]",12067.0
+1992,Mitsubishi,Mighty Max Macro Cab,"[""Pickup""]",MSRP not found
+1992,Mitsubishi,Mighty Max Regular Cab,"[""Pickup""]",9747.0
+1992,Mitsubishi,Mirage,"[""Hatchback"", ""Sedan""]",7687.0
+1992,Mitsubishi,Montero,"[""SUV""]",18927.0
+1992,Mitsubishi,Precis,"[""Hatchback""]",MSRP not found
+1992,Nissan,240SX,"[""Hatchback"", ""Coupe"", ""Convertible""]",14815.0
+1992,Nissan,300ZX,"[""Hatchback""]",29420.0
+1992,Nissan,King Cab,"[""Pickup""]",9095.0
+1992,Nissan,Maxima,"[""Sedan""]",20725.0
+1992,Nissan,NX,"[""Hatchback""]",MSRP not found
+1992,Nissan,Pathfinder,"[""SUV""]",MSRP not found
+1992,Nissan,Regular Cab,"[""Pickup""]",9095.0
+1992,Nissan,Sentra,"[""Coupe"", ""Sedan""]",9550.0
+1992,Nissan,Stanza,"[""Sedan""]",13050.0
+1992,Oldsmobile,88,"[""Sedan""]",19050.0
+1992,Oldsmobile,98,"[""Sedan""]",MSRP not found
+1992,Oldsmobile,Achieva,"[""Sedan"", ""Coupe""]",MSRP not found
+1992,Oldsmobile,Bravada,"[""SUV""]",MSRP not found
+1992,Oldsmobile,Custom Cruiser,"[""Wagon""]",21550.0
+1992,Oldsmobile,Cutlass Ciera,"[""Sedan"", ""Wagon""]",13255.0
+1992,Oldsmobile,Cutlass Supreme,"[""Sedan"", ""Convertible"", ""Coupe""]",16200.0
+1992,Oldsmobile,Silhouette,"[""Van/Minivan""]",19625.0
+1992,Oldsmobile,Toronado,"[""Coupe""]",25295.0
+1992,Plymouth,Acclaim,"[""Sedan""]",11955.0
+1992,Plymouth,Colt,"[""Hatchback""]",7670.0
+1992,Plymouth,Colt Vista,"[""Wagon""]",MSRP not found
+1992,Plymouth,Grand Voyager,"[""Van/Minivan""]",17821.0
+1992,Plymouth,Laser,"[""Hatchback""]",11552.0
+1992,Plymouth,Sundance,"[""Hatchback""]",8469.0
+1992,Plymouth,Voyager,"[""Van/Minivan""]",13946.0
+1992,Pontiac,Bonneville,"[""Sedan""]",19154.0
+1992,Pontiac,Firebird,"[""Hatchback"", ""Convertible""]",12995.0
+1992,Pontiac,Grand Am,"[""Sedan"", ""Coupe""]",12374.0
+1992,Pontiac,Grand Prix,"[""Coupe"", ""Sedan""]",15395.0
+1992,Pontiac,LeMans,"[""Hatchback"", ""Sedan""]",8395.0
+1992,Pontiac,Sunbird,"[""Sedan"", ""Coupe"", ""Convertible""]",10095.0
+1992,Pontiac,Trans Sport,"[""Van/Minivan""]",16755.0
+1992,Porsche,911,"[""Coupe"", ""Convertible""]",63900.0
+1992,Porsche,968,"[""Coupe"", ""Convertible""]",MSRP not found
+1992,Saab,900,"[""Sedan"", ""Hatchback"", ""Convertible""]",MSRP not found
+1992,Saab,9000,"[""Sedan"", ""Hatchback""]",MSRP not found
+1992,Saturn,S-Series,"[""Coupe"", ""Sedan""]",8470.0
+1992,Subaru,Justy,"[""Hatchback""]",7090.0
+1992,Subaru,Legacy,"[""Sedan"", ""Wagon""]",13944.0
+1992,Subaru,Loyale,"[""Sedan"", ""Wagon""]",10244.0
+1992,Subaru,SVX,"[""Coupe""]",MSRP not found
+1992,Suzuki,Samurai,"[""SUV""]",6599.0
+1992,Suzuki,Sidekick,"[""SUV""]",10999.0
+1992,Suzuki,Swift,"[""Sedan"", ""Hatchback""]",7184.0
+1992,Toyota,4Runner,"[""SUV""]",MSRP not found
+1992,Toyota,Camry,"[""Sedan"", ""Wagon""]",MSRP not found
+1992,Toyota,Celica,"[""Coupe"", ""Convertible"", ""Hatchback""]",13673.0
+1992,Toyota,Corolla,"[""Sedan"", ""Wagon""]",9713.0
+1992,Toyota,Cressida,"[""Sedan""]",23783.0
+1992,Toyota,Land Cruiser,"[""SUV""]",25628.0
+1992,Toyota,MR2,"[""Coupe""]",16343.0
+1992,Toyota,Paseo,"[""Coupe""]",MSRP not found
+1992,Toyota,Previa,"[""Van/Minivan""]",16813.0
+1992,Toyota,Regular Cab,"[""Pickup""]",MSRP not found
+1992,Toyota,Supra,"[""Hatchback""]",25575.0
+1992,Toyota,Tercel,"[""Sedan""]",7293.0
+1992,Toyota,Xtra Cab,"[""Pickup""]",MSRP not found
+1992,Volkswagen,Cabriolet,"[""Convertible""]",17690.0
+1992,Volkswagen,Corrado,"[""Coupe""]",20230.0
+1992,Volkswagen,Fox,"[""Sedan"", ""Coupe""]",8020.0
+1992,Volkswagen,Golf,"[""Hatchback""]",MSRP not found
+1992,Volkswagen,GTI,"[""Hatchback""]",MSRP not found
+1992,Volkswagen,Jetta,"[""Sedan""]",MSRP not found
+1992,Volkswagen,Passat,"[""Sedan"", ""Wagon""]",MSRP not found
+1992,Volvo,240,"[""Wagon"", ""Sedan""]",MSRP not found
+1992,Volvo,740,"[""Wagon"", ""Sedan""]",24680.0
+1992,Volvo,940,"[""Sedan"", ""Wagon""]",MSRP not found
+1992,Volvo,960,"[""Sedan"", ""Wagon""]",34370.0
