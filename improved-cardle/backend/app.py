@@ -24,6 +24,25 @@ def check_value(value, target, exact_range, near_range):
             return '#808080', 'up'
         else: 
             return '#808080', 'down'
+        
+def compare_countries(guessed_country, target_country):
+    bordering_countries = {
+        "Japan": ["South Korea"],
+        "Italy": ["Germany"],
+        "Germany": ["Italy", "Sweden"],
+        "USA": [],
+        "South Korea": ["Japan"],
+        "UK": [],
+        "Sweden": ["Germany"],
+        "Vietnam": []
+    }
+
+    if guessed_country == target_country:
+        return '#50C878'
+    elif guessed_country in bordering_countries.get(target_country, []):
+        return '#E4D00A'
+    else:
+        return '#808080'
 
 @app.route('/api/years', methods=['GET'])
 def get_years():
@@ -126,6 +145,10 @@ def submit_guess():
             color, arrow = check_value(guessed_car[key], car_of_the_day[key], exact_range, near_range)
             comparison[key] = {'match': color, 'direction': arrow}
             if color != '#50C878':
+                is_correct = False
+        elif key == 'country':
+            comparison['country'] = {'match': compare_countries(guessed_car['country'], car_of_the_day['country'])}
+            if comparison['country']['match'] != '#50C878':
                 is_correct = False
         else:
             comparison[key] = {'match': '#50C878' if guessed_car[key] == car_of_the_day[key] else '#808080'}
