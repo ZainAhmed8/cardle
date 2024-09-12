@@ -44,6 +44,24 @@ def compare_countries(guessed_country, target_country):
     else:
         return '#808080'
 
+@app.route('/randomize', methods=['GET'])
+def set_random():
+    car_cur = mongo.db.cardle_coll.aggregate([{ "$sample": { "size": 1} }])
+    car = next(car_cur, None)
+    if car:
+        new_car_id = car.get('_id')
+        
+        car_of_the_day_ent = {
+            'car_of_the_day_id': new_car_id,
+            'date': datetime.datetime.now(datetime.timezone.utc)
+        }
+
+        mongo.db.car_of_the_day.replace_one({}, car_of_the_day_ent, upsert=True)
+        return jsonify({'message': 'Car successfully randomized'})
+    else:
+        return jsonify({'message': 'no car found'}), 404
+
+
 @app.route('/api/years', methods=['GET'])
 def get_years():
     years = mongo.db.cardle_coll.distinct("year")
