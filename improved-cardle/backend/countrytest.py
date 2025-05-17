@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-client = MongoClient("mongodb+srv://zainahmed8:9xohXdECeL337HLM@cardlecluster.0nj0jgx.mongodb.net/CardleMain")
+client = MongoClient("secret")
 
 db = client['CardleMain']
 collection = db['cardle_coll']
