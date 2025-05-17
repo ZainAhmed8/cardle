@@ -5,7 +5,7 @@ from flask_cors import CORS
 import datetime
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb+srv://zainahmed8:9xohXdECeL337HLM@cardlecluster.0nj0jgx.mongodb.net/CardleMain"
+app.config["MONGO_URI"] = "secret"
 mongo = PyMongo(app)
 CORS(app)
 
